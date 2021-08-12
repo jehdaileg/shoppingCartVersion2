@@ -14,7 +14,7 @@
   <!-- ... -->
 </svg>
     
-  <button class="transition duration-500 ease-in-out bg-blue-500 hover:bg-red-500 transform hover:-translate-y-1 hover:scale-110 text-white font-bold py-2 px-4 rounded">
+  <button class="transition duration-500 ease-in-out bg-blue-500 hover:bg-red-500 transform hover:-translate-y-1 hover:scale-110 text-white font-bold py-2 px-4 rounded" @click="$emit('clickOnAProduct', product)">
     View
   </button>
 
@@ -40,11 +40,15 @@
 
       },
 
-        computed: {
+      computed: {
+
+        description(){
+
+          return this.product.description.substring(0, 20)
+          
+        }
 
       },
-
-
 
       components: {
   

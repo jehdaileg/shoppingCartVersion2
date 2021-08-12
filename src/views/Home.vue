@@ -32,11 +32,7 @@
               </div>
          <div class="font-bold 2xl:flex ml-2">Dark Mode</div>
 
-
-  </button>
-
-   
-      
+  </button>   
 
     </nav>
 
@@ -54,6 +50,7 @@
          v-for="product in items"
          :key = "product.id"
          :product = "product"
+         v-on:clickOnAProduct ="getProductValue($event)"
 
          
           />
@@ -65,7 +62,34 @@
 
    </div>
 
-   
+   <div class="productDescriptionWithHisModal">
+
+     <div v-if="toggleProductDescription" class="fixed overflow-x-hidden overflow-y-auto inset-0 flex justify-center items-center z-50">
+
+       <div class="relative mx-auto w-auto max-w-2xl">
+
+         <div class="bg-white w-full rounded shadow-2xl flex  flex-col  justify-center">
+
+             <div class="font-bold text-xl myFont"> Want this product ? </div>
+
+            <ProductDescription
+
+            :product = "product"
+            
+             />
+            
+                <button class="rounded shadow-xl px-6 mt-1 mb-3 w-3/12 m-auto py-2 max-w-sm bg-red-500 text-white font-semibold " @click="toggleProductDescription = false">Cancel</button>
+         </div>
+
+       </div>
+
+     </div>
+
+           <div v-if="toggleProductDescription" class="absolute w-full h-full object-cover inset-0 opacity-50 bg-black"></div>
+
+
+   </div>
+  
 
 <footer class="text-gray-600 body-font dark:bg-black">
   <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
@@ -105,6 +129,7 @@
   </div>
 </footer>
 
+   
 
    </div>
      
@@ -116,13 +141,16 @@ import items from "../database/index.js";
 
 import ProductSummary from "../components/products/ProductSummary.vue";
 
+import ProductDescription from "../components/products/ProductDescription.vue";
+
+
 export default {
   watch: {
   },
   name: "Home",
   components: {
 
-     ProductSummary
+     ProductSummary, ProductDescription
     
   },
 
@@ -131,12 +159,12 @@ export default {
 
         items: items, 
 
-        isDark: true,
+        isDark: false,
 
+        product: null,
 
-      
+        toggleProductDescription: false,
 
-        
 
      }
   },
@@ -147,7 +175,19 @@ export default {
 
       this.isDark = !this.isDark
 
-    }
+    },
+
+    getProductValue(product){
+
+      this.product = product 
+
+      this.toggleProductDescription = !this.toggleProductDescription
+
+      console.log(product)
+
+      console.log(this.toggleProductDescription)
+
+      }
 
     
   },
@@ -170,4 +210,9 @@ export default {
 
      background-color: black;
    }
+
+   .myFont{
+     font-family: "Merienda", Helvetica, Arial;
+     font-size: 20px;
+  }
 </style>

@@ -96,7 +96,7 @@ const items = [
 
         id: 10,
         name: "Trousers",
-        category: "waer",
+        category: "wear",
         description: "Gewöhnlich glaubt der Mensch,Gewöhnlich glaubt der MenschGewöhnlich glaubt der Mensch",
         price: 35,
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzcW26zWiEp4H6KOXl_sqOoVv3h7LomxOClw&usqp=CAU"
